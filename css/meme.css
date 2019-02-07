@@ -1,0 +1,21 @@
+p {
+  position: relative;
+  color: green;
+  font-family: "Comic Sans MS";
+  text-align: center;
+}
+
+.yeet {
+  font-size: 20pt;
+  top: 200px;
+}
+
+.yeeha {
+  font-size: 7pt;
+  top: 178px;
+}
+
+img {
+  position: absolute;
+  height: 200px;
+}
