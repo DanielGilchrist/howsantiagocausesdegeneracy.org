@@ -1,4 +1,4 @@
-# [howsantiagocausesdegeneracy.org](howsantiagocausesdegeneracy.org)
+# [howsantiagocausesdegeneracy.org](www.howsantiagocausesdegeneracy.org)
 Obnoxious static web page representing [@llausa](https://github.com/llausa)
 
 Controls:
