@@ -29,6 +29,8 @@ function ʕಠᴥಠʔ (ᕕ〳ಠل͜ಠ〵ᕗ) {
 }
 
 function handleKeyPress (e) {
+  if (getImages().length === 0) { return }
+
   if (e.keyCode == upKey) {
     speed++
     if (!spinning) { spin() }
