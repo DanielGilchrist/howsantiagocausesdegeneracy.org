@@ -1,3 +1,7 @@
+body {
+  overflow: hidden;
+}
+
 p {
   position: relative;
   color: green;
