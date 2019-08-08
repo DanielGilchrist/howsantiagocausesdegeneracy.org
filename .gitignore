@@ -31,3 +31,8 @@ Temporary Items
 .apdisk
 
 # End of https://www.gitignore.io/api/macos
+.idea/workspace.xml
+.idea/vcs.xml
+.idea/modules.xml
+.idea/misc.xml
+.idea/howsantiagocausesdegeneracy.org.iml
