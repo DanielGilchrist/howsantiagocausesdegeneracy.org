@@ -3,6 +3,7 @@ document.addEventListener("dragover", ʕಠᴥಠʔ)
 document.addEventListener("keydown", handleKeyPress)
 
 const stopKey = 83 // s key
+const resetKey = 82 // r key
 const upKey = 38
 const downKey = 40
 const spaceKey = 32
@@ -36,11 +37,12 @@ function handleKeyPress (e) {
     if (!spinning) { spin() }
   } else if (e.keyCode == stopKey) {
     stop()
+  } else if (e.keyCode == resetKey) {
+    reset()
   } else if (e.keyCode == spaceKey) {
     secretMode = !secretMode
 
-    const images = document.body.getElementsByTagName("img")
-    Array.prototype.forEach.call(images, image => {
+    eachImage(image => {
       let transformValue = "0"
 
       if (secretMode) {
@@ -53,27 +55,43 @@ function handleKeyPress (e) {
 }
 
 function spin () {
-  const images = document.body.getElementsByTagName("img")
   let rot = 0
   interval = setInterval(() => {
     rot += speed
-    Array.prototype.forEach.call(images, image => {
-      image.style.transform = `rotate(${rot}deg)`
-    })
+    eachImage(image => image.style.transform = `rotate(${rot}deg)`)
   }, 1)
   spinning = true
 }
 
 function stop () {
   clearInterval(interval)
-  const images = document.body.getElementsByTagName("img")
-  Array.prototype.forEach.call(images, image => {
-    image.style.transform = "rotate(0deg)"
-  })
+  eachImage(image => image.style.transform = "rotate(0deg)")
   spinning = false
   speed = 0
 }
 
-function generateTransformOrigin(element) {
+function generateTransformOrigin () {
   return `${Math.random() * 100}% ${Math.random() * 100}%`
+}
+
+function eachImage (callback) {
+  const images = getImages()
+  return Array.prototype.forEach.call(images, callback)
+}
+
+function getImages () {
+  return document.body.getElementsByTagName("img")
+}
+
+function deleteImages () {
+  eachImage(image => document.body.removeChild(image))
+}
+
+function reset () {
+  stop()
+  let numImages = getImages().length
+  while (numImages > 0) {
+    deleteImages()
+    numImages = getImages().length
+  }
 }
