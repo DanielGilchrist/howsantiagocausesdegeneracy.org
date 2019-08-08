@@ -2,10 +2,12 @@ document.addEventListener("mousedown", ʕಠᴥಠʔ)
 document.addEventListener("dragover", ʕಠᴥಠʔ)
 document.addEventListener("keydown", handleKeyPress)
 
-const spinKey = 83 // s
+const stopKey = 83 // s key
+const upKey = 38
+const downKey = 40
 let interval = 0
 let spinning = false
-let speed = 1
+let speed = 0
 
 function ʕಠᴥಠʔ (ᕕ〳ಠل͜ಠ〵ᕗ) {
   const ಠωಠ = document.createElement("img")
@@ -21,12 +23,14 @@ function ʕಠᴥಠʔ (ᕕ〳ಠل͜ಠ〵ᕗ) {
 }
 
 function handleKeyPress (e) {
-  if (e.keyCode == spinKey) {
-    spinning ? stop() : spin()
-  } else if (e.keyCode == 38) {
+  if (e.keyCode == upKey) {
     speed++
-  } else if (e.keyCode == 40) {
+    if (!spinning) { spin() }
+  } else if (e.keyCode == downKey) {
     speed--
+    if (!spinning) { spin() }
+  } else if (e.keyCode == stopKey) {
+    stop()
   }
 }
 
