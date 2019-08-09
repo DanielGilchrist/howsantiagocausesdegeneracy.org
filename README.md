@@ -2,6 +2,9 @@
 Obnoxious static web page representing [@llausa](https://github.com/llausa)
 
 Controls:
-- s: start/stop the spinning
-- Up: increase clockwise speed
-- Down: increase anti-clockwise speed
+- up: increase clockwise speed
+- down: increase anti-clockwise speed
+- s: stop the spinning
+- r: reset
+- space: 👀
+- enter: 😥
