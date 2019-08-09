@@ -2,14 +2,16 @@ document.addEventListener("mousedown", ʕಠᴥಠʔ)
 document.addEventListener("dragover", ʕಠᴥಠʔ)
 document.addEventListener("keydown", handleKeyPress)
 
-const stopKey = 83 // s key
-const resetKey = 82 // r key
-const upKey = 38
-const downKey = 40
-const spaceKey = 32
+const STOP_KEY = 83 // s key
+const RESET_KEY = 82 // r key
+const UP_KEY = 38
+const DOWN_KEY = 40
+const SPACE_KEY = 32
+const SPEED_GRANULARITY = 0.25
+
+let speed = 0
 let interval = 0
 let spinning = false
-let speed = 0
 let secretMode = false
 
 function ʕಠᴥಠʔ (ᕕ〳ಠل͜ಠ〵ᕗ) {
@@ -31,17 +33,17 @@ function ʕಠᴥಠʔ (ᕕ〳ಠل͜ಠ〵ᕗ) {
 function handleKeyPress (e) {
   if (getImages().length === 0) { return }
 
-  if (e.keyCode == upKey) {
-    speed++
+  if (e.keyCode == UP_KEY) {
+    speed += SPEED_GRANULARITY
     if (!spinning) { spin() }
-  } else if (e.keyCode == downKey) {
-    speed--
+  } else if (e.keyCode == DOWN_KEY) {
+    speed -= SPEED_GRANULARITY
     if (!spinning) { spin() }
-  } else if (e.keyCode == stopKey) {
+  } else if (e.keyCode == STOP_KEY) {
     stop()
-  } else if (e.keyCode == resetKey) {
+  } else if (e.keyCode == RESET_KEY) {
     reset()
-  } else if (e.keyCode == spaceKey) {
+  } else if (e.keyCode == SPACE_KEY) {
     secretMode = !secretMode
 
     eachImage(image => {
