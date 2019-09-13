@@ -47,7 +47,18 @@ function handleKeyPress (e) {
 
 function createSanti (x, y) {
   const ಠωಠ = document.createElement("img")
-  ಠωಠ.setAttribute("src", "./images/degenerate.png")
+  let imagePath = null
+  const randomNumber = Math.random()
+
+  if (randomNumber <= 0.001) { // 0.1% chance - ultra rare bron
+    imagePath = "./images/smol_bren.png"
+  } else if (randomNumber <= 0.01) { // 1% chance - rare bron
+    imagePath = "./images/bog_bren.png"
+  } else {
+    imagePath = "./images/degenerate.png"
+  }
+
+  ಠωಠ.setAttribute("src", imagePath)
   ಠωಠ.style.left = `${x - 60}px`
   ಠωಠ.style.top = `${y - 100}px`
   if (secretMode) {
