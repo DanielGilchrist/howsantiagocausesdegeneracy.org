@@ -129,9 +129,7 @@ function toggleSecretMode() {
   })
 }
 
-function bulkSanti (numSantis = null) { // default param just for dicking around in the console
-  numSantis = numSantis || 100
-
+function bulkSanti (numSantis = 100) { // default param just for dicking around in the console
   for (let i = 0; i < numSantis; i++) {
     const x = Math.random() * window.innerWidth
     const y = Math.random() * window.innerHeight
