@@ -138,7 +138,9 @@ function bulkSanti (numSantis = null) { // default param just for dicking around
 
     if (!secretMode) { toggleSecretMode() }
 
-    speed = parseFloat(["-", "+"][Math.round(Math.random() * 1)] + (SPEED_GRANULARITY * 10))
+    if (!speed) {
+      speed = parseFloat(["-", "+"][Math.round(Math.random())] + (SPEED_GRANULARITY * 10))
+    }
 
     if (!spinning) { spin() }
 
