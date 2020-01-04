@@ -104,11 +104,9 @@ function deleteImages () {
 
 function reset () {
   stop()
-  let numImages = getImages().length
-  while (numImages > 0) {
+
+  while (getImages().length > 0)
     deleteImages()
-    numImages = getImages().length
-  }
 }
 
 function randomTransformOrigin () {
