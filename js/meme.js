@@ -129,18 +129,19 @@ function toggleSecretMode() {
   })
 }
 
-function bulkSanti (numSantis = 100) { // default param just for dicking around in the console
+function bulkSanti (numSantis = 100) {
+  if (!secretMode)
+    toggleSecretMode()
+
+  if (!speed)
+    speed = parseFloat(["-", "+"][Math.round(Math.random())] + (SPEED_GRANULARITY * 10))
+
+  if (!spinning)
+    spin()
+
   for (let i = 0; i < numSantis; i++) {
     const x = Math.random() * window.innerWidth
     const y = Math.random() * window.innerHeight
-
-    if (!secretMode) { toggleSecretMode() }
-
-    if (!speed) {
-      speed = parseFloat(["-", "+"][Math.round(Math.random())] + (SPEED_GRANULARITY * 10))
-    }
-
-    if (!spinning) { spin() }
 
     createSanti(x, y)
   }
