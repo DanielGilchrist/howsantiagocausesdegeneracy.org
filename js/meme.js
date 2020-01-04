@@ -23,19 +23,17 @@ function ʕಠᴥಠʔ (ᕕ〳ಠل͜ಠ〵ᕗ) {
 
 function handleKeyPress (e) {
   // key events that you want to run always
-  if (e.keyCode == ENTER_KEY) {
-    bulkSanti()
-  }
+  if (e.keyCode == ENTER_KEY) bulkSanti()
 
-  if (getImages().length === 0) { return }
+  if (getImages().length === 0) return
 
   // key events you only want to run if there are images on the screen
   if (e.keyCode == UP_KEY) {
     speed += SPEED_GRANULARITY
-    if (!spinning) { spin() }
+    if (!spinning) spin()
   } else if (e.keyCode == DOWN_KEY) {
     speed -= SPEED_GRANULARITY
-    if (!spinning) { spin() }
+    if (!spinning) spin()
   } else if (e.keyCode == STOP_KEY) {
     stop()
   } else if (e.keyCode == RESET_KEY) {
@@ -61,9 +59,9 @@ function createSanti (x, y) {
   ಠωಠ.setAttribute("src", imagePath)
   ಠωಠ.style.left = `${x - 60}px`
   ಠωಠ.style.top = `${y - 100}px`
-  if (secretMode) {
+
+  if (secretMode)
     ಠωಠ.style["transform-origin"] = randomTransformOrigin()
-  }
 
   const 〳ಠʖಠ〵 = document.createElement("audio")
   〳ಠʖಠ〵.setAttribute("src", `./audio/degenerate${Math.floor(Math.random() * 4) + 1}.m4a`)
@@ -90,8 +88,7 @@ function stop () {
 }
 
 function eachImage (callback) {
-  const images = getImages()
-  return Array.prototype.forEach.call(images, callback)
+  return Array.prototype.forEach.call(getImages(), callback)
 }
 
 function getImages () {
@@ -104,9 +101,7 @@ function deleteImages () {
 
 function reset () {
   stop()
-
-  while (getImages().length > 0)
-    deleteImages()
+  while (getImages().length > 0) deleteImages()
 }
 
 function randomTransformOrigin () {
@@ -128,14 +123,12 @@ function toggleSecretMode() {
 }
 
 function bulkSanti (numSantis = 100) {
-  if (!secretMode)
-    toggleSecretMode()
+  if (!secretMode) toggleSecretMode()
 
   if (!speed)
     speed = parseFloat(["-", "+"][Math.round(Math.random())] + (SPEED_GRANULARITY * 10))
 
-  if (!spinning)
-    spin()
+  if (!spinning) spin()
 
   for (let i = 0; i < numSantis; i++) {
     const x = Math.random() * window.innerWidth
