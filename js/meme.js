@@ -108,7 +108,7 @@ function randomTransformOrigin () {
   return `${Math.random() * 100}% ${Math.random() * 100}%`
 }
 
-function toggleSecretMode() {
+function toggleSecretMode () {
   secretMode = !secretMode
 
   eachImage(image => {
