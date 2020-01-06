@@ -16,13 +16,17 @@ let speed = 0
 let interval = 0
 let spinning = false
 let secretMode = false
-let mode = "light"
+let mode = getStorageMode()
 let hoveringModeContainer = false // lazy hack - stops santi from appearing when clicking button
 
+// setup
 const modeContainer = document.querySelector(".dark-mode-container")
+modeContainer.querySelector("#cb5").checked = mode === "dark"
+setBackgroundColour()
+
+// event listeners
 modeContainer.addEventListener("mouseover", () => hoveringModeContainer = true)
 modeContainer.addEventListener("mouseout", () => hoveringModeContainer = false)
-
 document.addEventListener("mousedown", ʕಠᴥಠʔ)
 document.addEventListener("dragover", ʕಠᴥಠʔ)
 document.addEventListener("keydown", handleKeyPress)
@@ -157,4 +161,17 @@ function setBackgroundColour () {
 function handleModeChange () {
   mode = mode === "dark" ? "light" : "dark"
   setBackgroundColour()
+  setStorageMode()
+}
+
+function getStorageMode () {
+  return storageWrapper(() => localStorage.getItem("mode")) || "light"
+}
+
+function setStorageMode () {
+  storageWrapper(() => localStorage.setItem("mode", mode))
+}
+
+function storageWrapper (callback) {
+  return typeof(localStorage) !== "undefined" ? callback() : null
 }
