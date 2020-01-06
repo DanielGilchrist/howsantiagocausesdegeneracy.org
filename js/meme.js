@@ -1,7 +1,3 @@
-document.addEventListener("mousedown", ʕಠᴥಠʔ)
-document.addEventListener("dragover", ʕಠᴥಠʔ)
-document.addEventListener("keydown", handleKeyPress)
-
 // keys
 const STOP_KEY = 83 // s key
 const RESET_KEY = 82 // r key
@@ -11,13 +7,29 @@ const SPACE_KEY = 32
 const ENTER_KEY = 13
 
 const SPEED_GRANULARITY = 0.25
+const MODE_MAP = {
+  "dark": "#242323",
+  "light": "#FFFFFF",
+}
 
 let speed = 0
 let interval = 0
 let spinning = false
 let secretMode = false
+let mode = "light"
+let hoveringModeContainer = false // lazy hack - stops santi from appearing when clicking button
+
+const modeContainer = document.querySelector(".dark-mode-container")
+modeContainer.addEventListener("mouseover", () => hoveringModeContainer = true)
+modeContainer.addEventListener("mouseout", () => hoveringModeContainer = false)
+
+document.addEventListener("mousedown", ʕಠᴥಠʔ)
+document.addEventListener("dragover", ʕಠᴥಠʔ)
+document.addEventListener("keydown", handleKeyPress)
 
 function ʕಠᴥಠʔ (ᕕ〳ಠل͜ಠ〵ᕗ) {
+  if (hoveringModeContainer) return
+
   createSanti(ᕕ〳ಠل͜ಠ〵ᕗ.clientX, ᕕ〳ಠل͜ಠ〵ᕗ.clientY)
 }
 
@@ -136,4 +148,13 @@ function bulkSanti (numSantis = 100) {
 
     createSanti(x, y)
   }
+}
+
+function setBackgroundColour () {
+  document.body.style["background-color"] = MODE_MAP[mode] || MODE_MAP["light"]
+}
+
+function handleModeChange () {
+  mode = mode === "dark" ? "light" : "dark"
+  setBackgroundColour()
 }
