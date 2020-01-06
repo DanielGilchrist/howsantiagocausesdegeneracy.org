@@ -22,6 +22,7 @@ let hoveringModeContainer = false // lazy hack - stops santi from appearing when
 // setup
 const modeContainer = document.querySelector(".dark-mode-container")
 modeContainer.querySelector("#cb5").checked = mode === "dark"
+modeContainer.classList.toggle("hidden") // another lazy hack
 setBackgroundColour()
 
 // event listeners

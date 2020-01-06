@@ -37,7 +37,8 @@ img {
 
 /* Thx @mallendeo :^) */
 /* https://codepen.io/mallendeo/pen/eLIiG */
-.tgl {
+.tgl,
+.hidden {
   display: none;
 }
 
