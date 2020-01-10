@@ -19,6 +19,11 @@ p {
   top: 178px;
 }
 
+.yeet,
+.yeeha {
+  user-select: none;
+}
+
 .santi {
   position: absolute;
   height: 200px;
