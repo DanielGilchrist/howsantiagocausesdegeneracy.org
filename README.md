@@ -6,5 +6,6 @@ Controls:
 - down: increase anti-clockwise speed
 - s: stop the spinning
 - r: reset
+- m: toggle sound
 - space: 👀
 - enter: 😥

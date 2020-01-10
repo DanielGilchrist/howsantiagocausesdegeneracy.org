@@ -1,6 +1,7 @@
 // keys
-const STOP_KEY = 83 // s key
+const STOP_KEY = 83  // s key
 const RESET_KEY = 82 // r key
+const SOUND_KEY = 77 // m key
 const UP_KEY = 38
 const DOWN_KEY = 40
 const SPACE_KEY = 32
@@ -17,23 +18,31 @@ let interval = 0
 let spinning = false
 let secretMode = false
 let mode = getStorageMode()
-let hoveringModeContainer = false // lazy hack - stops santi from appearing when clicking button
+let hoveringClickable = false // lazy hack - stops santi from appearing when clicking clickable elements
+let soundOn = getSound()
 
 // setup
 const modeContainer = document.querySelector(".dark-mode-container")
 modeContainer.querySelector("#cb5").checked = mode === "dark"
-modeContainer.classList.toggle("hidden") // another lazy hack
+modeContainer.classList.toggle("hidden")
+
+const soundImage = document.querySelector("#soundImage")
+soundImage.classList.toggle("hidden")
+
 setBackgroundColour()
+setSoundImage()
 
 // event listeners
-modeContainer.addEventListener("mouseover", () => hoveringModeContainer = true)
-modeContainer.addEventListener("mouseout", () => hoveringModeContainer = false)
+modeContainer.addEventListener("mouseover", () => hoveringClickable = true)
+modeContainer.addEventListener("mouseout", () => hoveringClickable = false)
+soundImage.addEventListener("mouseover", () => hoveringClickable = true)
+soundImage.addEventListener("mouseout", () => hoveringClickable = false)
 document.addEventListener("mousedown", ʕಠᴥಠʔ)
 document.addEventListener("dragover", ʕಠᴥಠʔ)
 document.addEventListener("keydown", handleKeyPress)
 
 function ʕಠᴥಠʔ (ᕕ〳ಠل͜ಠ〵ᕗ) {
-  if (hoveringModeContainer) return
+  if (hoveringClickable) return
 
   createSanti(ᕕ〳ಠل͜ಠ〵ᕗ.clientX, ᕕ〳ಠل͜ಠ〵ᕗ.clientY)
 }
@@ -57,6 +66,8 @@ function handleKeyPress (e) {
     reset()
   } else if (e.keyCode == SPACE_KEY) {
     toggleSecretMode()
+  } else if (e.keyCode == SOUND_KEY) {
+    handleSoundToggle()
   }
 }
 
@@ -74,17 +85,22 @@ function createSanti (x, y) {
   }
 
   ಠωಠ.setAttribute("src", imagePath)
+  ಠωಠ.classList.add("santi")
   ಠωಠ.style.left = `${x - 60}px`
   ಠωಠ.style.top = `${y - 100}px`
 
   if (secretMode)
     ಠωಠ.style["transform-origin"] = randomTransformOrigin()
 
+  if (soundOn) sayDegenerate()
+
+  document.body.appendChild(ಠωಠ)
+}
+
+function sayDegenerate() {
   const 〳ಠʖಠ〵 = document.createElement("audio")
   〳ಠʖಠ〵.setAttribute("src", `./audio/degenerate${Math.floor(Math.random() * 4) + 1}.m4a`)
   〳ಠʖಠ〵.play()
-
-  document.body.appendChild(ಠωಠ)
 }
 
 function spin () {
@@ -104,12 +120,24 @@ function stop () {
   speed = 0
 }
 
+function handleSoundToggle() {
+  soundOn = !soundOn
+  setSound()
+  setSoundImage()
+}
+
+function setSoundImage() {
+  const soundImage = document.querySelector("#soundImage")
+  const keyword = soundOn ? "on" : "off"
+  soundImage.setAttribute("src", `./images/volume_${keyword}_${mode}.png`)
+}
+
 function eachImage (callback) {
   return Array.prototype.forEach.call(getImages(), callback)
 }
 
 function getImages () {
-  return document.body.getElementsByTagName("img")
+  return document.body.querySelectorAll(".santi")
 }
 
 function deleteImages () {
@@ -163,6 +191,7 @@ function handleModeChange () {
   mode = mode === "dark" ? "light" : "dark"
   setBackgroundColour()
   setStorageMode()
+  setSoundImage()
 }
 
 function getStorageMode () {
@@ -173,6 +202,21 @@ function setStorageMode () {
   storageWrapper(() => localStorage.setItem("mode", mode))
 }
 
+function getSound() {
+  return storageWrapper(() => parseBool(localStorage.getItem("soundOn")))
+}
+
+function setSound() {
+  storageWrapper(() => localStorage.setItem("soundOn", soundOn))
+}
+
 function storageWrapper (callback) {
   return typeof(localStorage) !== "undefined" ? callback() : null
+}
+
+function parseBool (value) {
+  if (typeof value === "boolean") return value
+  if (value === "false") return false
+
+  return Boolean(value)
 }

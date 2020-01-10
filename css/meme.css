@@ -19,19 +19,30 @@ p {
   top: 178px;
 }
 
-img {
+.santi {
   position: absolute;
   height: 200px;
+}
+
+#soundImage {
+  cursor: pointer;
+  left: 0;
+  margin: 1.5rem;
 }
 
 /* Dark mode toggle */
 /* Dark:    #242323 */
 /* Light:   #FFFFFF */
 .dark-mode-container {
-  position: absolute;
-  top: 0;
   right: 0;
   margin: 1.5rem;
+  z-index: 420;
+}
+
+#soundImage,
+.dark-mode-container {
+  position: absolute;
+  top: 0;
   z-index: 420;
 }
 

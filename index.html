@@ -26,13 +26,20 @@
   <link rel="stylesheet" type="text/css" href="./css/meme.css">
 </head>
 <body>
+  <img id="soundImage" class="hidden" onclick="handleSoundToggle()">
   <div class="dark-mode-container hidden">
     <input class="tgl tgl-flip" id="cb5" type="checkbox" onclick="handleModeChange()" />
     <label class="tgl-btn" data-tg-off="Dark" data-tg-on="Light" for="cb5"></label>
   </div>
 
   <p class="yeet">click anywhere for degeneracy.</p>
-  <p class="yeeha">controls: up arrow key (+speed) - down arrow key (-speed) - s key (stop) - r key (reset)</p>
+  <p class="yeeha">
+    controls: up arrow key (+clockwise) -
+    down arrow key (-anti-clockwise) -
+    s key (stop) -
+    r key (reset) -
+    m key (toggle sound)
+  </p>
   <script src="./js/meme.js"></script>
 </body>
 </html>
