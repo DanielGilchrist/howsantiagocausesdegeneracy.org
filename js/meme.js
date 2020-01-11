@@ -1,3 +1,5 @@
+preloadImages()
+
 // keys
 const STOP_KEY = 83  // s key
 const RESET_KEY = 82 // r key
@@ -220,4 +222,16 @@ function parseBool (value) {
   if (value === "false") return false
 
   return Boolean(value)
+}
+
+function preloadImages () {
+  [
+    "bog_bren.png",
+    "degenerate.png",
+    "smol_bren.png",
+    "volume_off_dark.png",
+    "volume_off_light.png",
+    "volume_on_dark.png",
+    "volume_on_light.png"
+  ].forEach(image_name => (new Image()).src = `./images/${image_name}`)
 }
