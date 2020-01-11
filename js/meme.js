@@ -203,7 +203,8 @@ function setStorageMode () {
 }
 
 function getSound() {
-  return storageWrapper(() => parseBool(localStorage.getItem("soundOn")))
+  const sound = storageWrapper(() => localStorage.getItem("soundOn"))
+  return sound == null ? true : parseBool(sound)
 }
 
 function setSound() {
