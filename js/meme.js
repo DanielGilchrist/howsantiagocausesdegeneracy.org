@@ -1,4 +1,4 @@
-preloadImages()
+preloadAssets()
 
 // keys
 const STOP_KEY = 83  // s key
@@ -161,9 +161,8 @@ function toggleSecretMode () {
   eachImage(image => {
     let transformValue = "0"
 
-    if (secretMode) {
+    if (secretMode)
       transformValue = randomTransformOrigin()
-    }
 
     image.style["transform-origin"] = transformValue
   })
@@ -224,14 +223,19 @@ function parseBool (value) {
   return Boolean(value)
 }
 
-function preloadImages () {
+function preloadAssets () {
+  // preloads required files to avoid jank when they aren't cached
+
   [
-    "bog_bren.png",
-    "degenerate.png",
-    "smol_bren.png",
-    "volume_off_dark.png",
-    "volume_off_light.png",
-    "volume_on_dark.png",
-    "volume_on_light.png"
-  ].forEach(image_name => (new Image()).src = `./images/${image_name}`)
+    "bog_bren",
+    "degenerate",
+    "smol_bren",
+    "volume_off_dark",
+    "volume_off_light",
+    "volume_on_dark",
+    "volume_on_light"
+  ].forEach(image_name => (new Image()).src = `./images/${image_name}.png`)
+
+  for (let i = 1; i <= 5; i++)
+    (new Audio).src = `./audio/degenerate${i}.m4a`
 }
