@@ -51,7 +51,11 @@ function ʕಠᴥಠʔ (ᕕ〳ಠل͜ಠ〵ᕗ) {
 
 function handleKeyPress (e) {
   // key events that you want to run always
-  if (e.keyCode == ENTER_KEY) bulkSanti()
+  if (e.keyCode == ENTER_KEY) {
+    bulkSanti()
+  } else if (e.keyCode == SOUND_KEY) {
+    handleSoundToggle()
+  }
 
   if (getImages().length === 0) return
 
@@ -68,8 +72,6 @@ function handleKeyPress (e) {
     reset()
   } else if (e.keyCode == SPACE_KEY) {
     toggleSecretMode()
-  } else if (e.keyCode == SOUND_KEY) {
-    handleSoundToggle()
   }
 }
 
