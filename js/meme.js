@@ -101,7 +101,7 @@ function createSanti (x, y) {
   document.body.appendChild(ಠωಠ)
 }
 
-function sayDegenerate() {
+function sayDegenerate () {
   const 〳ಠʖಠ〵 = document.createElement("audio")
   〳ಠʖಠ〵.setAttribute("src", `./audio/degenerate${Math.floor(Math.random() * 4) + 1}.m4a`)
   〳ಠʖಠ〵.play()
@@ -124,13 +124,13 @@ function stop () {
   speed = 0
 }
 
-function handleSoundToggle() {
+function handleSoundToggle () {
   soundOn = !soundOn
   setSound()
   setSoundImage()
 }
 
-function setSoundImage() {
+function setSoundImage () {
   const soundImage = document.querySelector("#soundImage")
   const keyword = soundOn ? "on" : "off"
   soundImage.setAttribute("src", `./images/volume_${keyword}_${mode}.png`)
@@ -205,12 +205,12 @@ function setStorageMode () {
   storageWrapper(() => localStorage.setItem("mode", mode))
 }
 
-function getSound() {
+function getSound () {
   const sound = storageWrapper(() => localStorage.getItem("soundOn"))
   return sound == null ? true : parseBool(sound)
 }
 
-function setSound() {
+function setSound () {
   storageWrapper(() => localStorage.setItem("soundOn", soundOn))
 }
 
