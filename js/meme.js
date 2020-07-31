@@ -160,9 +160,10 @@ function randomTransformOrigin () {
 function toggleSecretMode () {
   secretMode = !secretMode
 
-  const transformOrigin = secretMode ? randomTransformOrigin() : "50% 50%"
-
-  eachImage(image => image.style["transform-origin"] = transformOrigin)
+  eachImage((image) => {
+    const transformOrigin = secretMode ? randomTransformOrigin() : "50% 50%"
+    image.style["transform-origin"] = transformOrigin
+  })
 }
 
 function bulkSanti (numSantis = 100) {
