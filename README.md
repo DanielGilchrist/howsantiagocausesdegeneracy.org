@@ -1,4 +1,5 @@
-# [howsantiagocausesdegeneracy.org](http://www.howsantiagocausesdegeneracy.org)
+# ~~[howsantiagocausesdegeneracy.org](danielgilchrist.github.io/howsantiagocausesdegeneracy.org/)~~
+
 Obnoxious static web page representing [@llausa](https://github.com/llausa)
 
 Controls:
