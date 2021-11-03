@@ -234,6 +234,6 @@ function preloadAssets () {
     "volume_on_light"
   ].forEach(image_name => (new Image()).src = `./images/${image_name}.png`)
 
-  for (let i = 1; i <= 5; i++)
+  for (let i = 1; i <= 4; i++)
     (new Audio).src = `./audio/degenerate${i}.m4a`
 }
