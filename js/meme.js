@@ -80,9 +80,9 @@ function createSanti (x, y) {
   let imagePath = null
   const randomNumber = Math.random()
 
-  if (randomNumber <= 0.001) { // 0.1% chance - ultra rare bron
+  if (randomNumber <= 0.0001) { // 0.01% chance - ultra rare bron
     imagePath = "./images/smol_bren.png"
-  } else if (randomNumber <= 0.01) { // 1% chance - rare bron
+  } else if (randomNumber <= 0.001) { // 0.1% chance - rare bron
     imagePath = "./images/bog_bren.png"
   } else {
     imagePath = "./images/degenerate.png"
