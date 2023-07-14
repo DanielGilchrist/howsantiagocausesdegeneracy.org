@@ -1,3 +1,5 @@
+"use strict"
+
 preloadAssets()
 
 // keys
@@ -77,16 +79,7 @@ function handleKeyPress (e) {
 
 function createSanti (x, y) {
   const ಠωಠ = document.createElement("img")
-  let imagePath = null
-  const randomNumber = Math.random()
-
-  if (randomNumber <= 0.0001) { // 0.01% chance - ultra rare bron
-    imagePath = "./images/smol_bren.png"
-  } else if (randomNumber <= 0.001) { // 0.1% chance - rare bron
-    imagePath = "./images/bog_bren.png"
-  } else {
-    imagePath = "./images/degenerate.png"
-  }
+  const imagePath = "./images/chick.png"
 
   ಠωಠ.setAttribute("src", imagePath)
   ಠωಠ.classList.add("santi")
@@ -103,7 +96,7 @@ function createSanti (x, y) {
 
 function sayDegenerate () {
   const 〳ಠʖಠ〵 = document.createElement("audio")
-  〳ಠʖಠ〵.setAttribute("src", `./audio/degenerate${Math.floor(Math.random() * 4) + 1}.m4a`)
+  〳ಠʖಠ〵.setAttribute("src", `./audio/bratpack.m4a`)
   〳ಠʖಠ〵.play()
 }
 
@@ -225,15 +218,13 @@ function preloadAssets () {
   // preloads required files to avoid jank when they aren't cached
 
   [
-    "bog_bren",
-    "degenerate",
-    "smol_bren",
+    "chick",
     "volume_off_dark",
     "volume_off_light",
     "volume_on_dark",
-    "volume_on_light"
+    "volume_on_light",
   ].forEach(image_name => (new Image()).src = `./images/${image_name}.png`)
 
-  for (let i = 1; i <= 4; i++)
-    (new Audio).src = `./audio/degenerate${i}.m4a`
+  const bratpack = new Audio()
+  bratpack.src = `./audio/bratpack.m4a`
 }
