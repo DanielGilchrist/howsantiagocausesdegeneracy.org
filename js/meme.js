@@ -1,3 +1,5 @@
+"use strict"
+
 preloadAssets()
 
 // keys
@@ -20,7 +22,7 @@ let interval = 0
 let spinning = false
 let secretMode = false
 let mode = getStorageMode()
-let hoveringClickable = false // lazy hack - stops santi from appearing when clicking clickable elements
+let hoveringClickable = false // lazy hack - stops chick from appearing when clicking clickable elements
 let soundOn = getSound()
 
 // setup
@@ -46,13 +48,13 @@ document.addEventListener("keydown", handleKeyPress)
 function ʕಠᴥಠʔ (ᕕ〳ಠل͜ಠ〵ᕗ) {
   if (hoveringClickable) return
 
-  createSanti(ᕕ〳ಠل͜ಠ〵ᕗ.clientX, ᕕ〳ಠل͜ಠ〵ᕗ.clientY)
+  createChick(ᕕ〳ಠل͜ಠ〵ᕗ.clientX, ᕕ〳ಠل͜ಠ〵ᕗ.clientY)
 }
 
 function handleKeyPress (e) {
   // key events that you want to run always
   if (e.keyCode == ENTER_KEY) {
-    bulkSanti()
+    bulkChick()
   } else if (e.keyCode == SOUND_KEY) {
     handleSoundToggle()
   }
@@ -75,21 +77,12 @@ function handleKeyPress (e) {
   }
 }
 
-function createSanti (x, y) {
+function createChick (x, y) {
   const ಠωಠ = document.createElement("img")
-  let imagePath = null
-  const randomNumber = Math.random()
-
-  if (randomNumber <= 0.0001) { // 0.01% chance - ultra rare bron
-    imagePath = "./images/smol_bren.png"
-  } else if (randomNumber <= 0.001) { // 0.1% chance - rare bron
-    imagePath = "./images/bog_bren.png"
-  } else {
-    imagePath = "./images/degenerate.png"
-  }
+  const imagePath = "./images/chick.png"
 
   ಠωಠ.setAttribute("src", imagePath)
-  ಠωಠ.classList.add("santi")
+  ಠωಠ.classList.add("chick")
   ಠωಠ.style.left = `${x - 60}px`
   ಠωಠ.style.top = `${y - 100}px`
 
@@ -103,7 +96,7 @@ function createSanti (x, y) {
 
 function sayDegenerate () {
   const 〳ಠʖಠ〵 = document.createElement("audio")
-  〳ಠʖಠ〵.setAttribute("src", `./audio/degenerate${Math.floor(Math.random() * 4) + 1}.m4a`)
+  〳ಠʖಠ〵.setAttribute("src", `./audio/bratpack.m4a`)
   〳ಠʖಠ〵.play()
 }
 
@@ -141,7 +134,7 @@ function eachImage (callback) {
 }
 
 function getImages () {
-  return document.body.querySelectorAll(".santi")
+  return document.body.querySelectorAll(".chick")
 }
 
 function deleteImages () {
@@ -166,7 +159,7 @@ function toggleSecretMode () {
   })
 }
 
-function bulkSanti (numSantis = 100) {
+function bulkChick (numChicks = 100) {
   if (!secretMode) toggleSecretMode()
 
   if (!speed)
@@ -174,11 +167,11 @@ function bulkSanti (numSantis = 100) {
 
   if (!spinning) spin()
 
-  for (let i = 0; i < numSantis; i++) {
+  for (let i = 0; i < numChicks; i++) {
     const x = Math.random() * window.innerWidth
     const y = Math.random() * window.innerHeight
 
-    createSanti(x, y)
+    createChick(x, y)
   }
 }
 
@@ -225,15 +218,13 @@ function preloadAssets () {
   // preloads required files to avoid jank when they aren't cached
 
   [
-    "bog_bren",
-    "degenerate",
-    "smol_bren",
+    "chick",
     "volume_off_dark",
     "volume_off_light",
     "volume_on_dark",
-    "volume_on_light"
+    "volume_on_light",
   ].forEach(image_name => (new Image()).src = `./images/${image_name}.png`)
 
-  for (let i = 1; i <= 4; i++)
-    (new Audio).src = `./audio/degenerate${i}.m4a`
+  const bratpack = new Audio()
+  bratpack.src = `./audio/bratpack.m4a`
 }
