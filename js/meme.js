@@ -22,7 +22,7 @@ let interval = 0
 let spinning = false
 let secretMode = false
 let mode = getStorageMode()
-let hoveringClickable = false // lazy hack - stops santi from appearing when clicking clickable elements
+let hoveringClickable = false // lazy hack - stops chick from appearing when clicking clickable elements
 let soundOn = getSound()
 
 // setup
@@ -48,13 +48,13 @@ document.addEventListener("keydown", handleKeyPress)
 function ʕಠᴥಠʔ (ᕕ〳ಠل͜ಠ〵ᕗ) {
   if (hoveringClickable) return
 
-  createSanti(ᕕ〳ಠل͜ಠ〵ᕗ.clientX, ᕕ〳ಠل͜ಠ〵ᕗ.clientY)
+  createChick(ᕕ〳ಠل͜ಠ〵ᕗ.clientX, ᕕ〳ಠل͜ಠ〵ᕗ.clientY)
 }
 
 function handleKeyPress (e) {
   // key events that you want to run always
   if (e.keyCode == ENTER_KEY) {
-    bulkSanti()
+    bulkChick()
   } else if (e.keyCode == SOUND_KEY) {
     handleSoundToggle()
   }
@@ -77,12 +77,12 @@ function handleKeyPress (e) {
   }
 }
 
-function createSanti (x, y) {
+function createChick (x, y) {
   const ಠωಠ = document.createElement("img")
   const imagePath = "./images/chick.png"
 
   ಠωಠ.setAttribute("src", imagePath)
-  ಠωಠ.classList.add("santi")
+  ಠωಠ.classList.add("chick")
   ಠωಠ.style.left = `${x - 60}px`
   ಠωಠ.style.top = `${y - 100}px`
 
@@ -134,7 +134,7 @@ function eachImage (callback) {
 }
 
 function getImages () {
-  return document.body.querySelectorAll(".santi")
+  return document.body.querySelectorAll(".chick")
 }
 
 function deleteImages () {
@@ -159,7 +159,7 @@ function toggleSecretMode () {
   })
 }
 
-function bulkSanti (numSantis = 100) {
+function bulkChick (numChicks = 100) {
   if (!secretMode) toggleSecretMode()
 
   if (!speed)
@@ -167,11 +167,11 @@ function bulkSanti (numSantis = 100) {
 
   if (!spinning) spin()
 
-  for (let i = 0; i < numSantis; i++) {
+  for (let i = 0; i < numChicks; i++) {
     const x = Math.random() * window.innerWidth
     const y = Math.random() * window.innerHeight
 
-    createSanti(x, y)
+    createChick(x, y)
   }
 }
 
